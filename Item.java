@@ -11,35 +11,17 @@ public class Item {
         this.price = price;
     }
 
-    public String getItemId() {
-        return itemId;
-    }
-
-    public String getItemName() {
-        return itemName;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public double getPrice() {
-        return price;
-    }
+    public String getItemId() { return itemId; }
+    public String getItemName() { return itemName; }
+    public int getQuantity() { return quantity; }
+    public double getPrice() { return price; }
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
-  
     @Override
     public String toString() {
-        return "ID: " + itemId +
-               ", Name: " + itemName +
-               ", Quantity: " + quantity +
-               ", Price: $" + price;
+        return itemId + " | " + itemName + " | Qty: " + quantity + " | $" + price;
     }
 }
