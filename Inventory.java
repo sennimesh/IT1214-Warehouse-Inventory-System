@@ -1,43 +1,100 @@
-import java.util.*;
-
 public class Inventory {
-    private Map<String, Item> items = new HashMap<>();
+    private Item[] items;
+    private int count;
 
+    // Constructor
+    public Inventory(int size) {
+        items = new Item[size]; // fixed size array
+        count = 0;
+    }
+
+    // Add item
     public void addItem(Item item) {
-        if (items.containsKey(item.getItemId())) {
-            System.out.println("Item already exists!");
+        if (count >= items.length) {
+            System.out.println("Inventory is full!");
             return;
         }
-        items.put(item.getItemId(), item);
-        System.out.println("Item added.");
+
+        // check duplicate ID
+        for (int i = 0; i < count; i++) {
+            if (items[i].getItemId().equals(item.getItemId())) {
+                System.out.println("Item already exists!");
+                return;
+            }
+        }
+
+        items[count] = item;
+        count++;
+        System.out.println("Item added successfully.");
     }
 
-    public void removeItem(String id) {
-        if (items.remove(id) != null)
-            System.out.println("Item removed.");
-        else
-            System.out.println("Item not found.");
+    // Remove item
+    public void removeItem(String itemId) {
+        for (int i = 0; i < count; i++) {
+            if (items[i].getItemId().equals(itemId)) {
+
+                // shift elements left
+                for (int j = i; j < count - 1; j++) {
+                    items[j] = items[j + 1];
+                }
+
+                items[count - 1] = null;
+                count--;
+
+                System.out.println("Item removed successfully.");
+                return;
+            }
+        }
+        System.out.println("Item not found.");
     }
 
-    public void updateQuantity(String id, int qty) {
-        Item item = items.get(id);
-        if (item != null) {
-            item.setQuantity(qty);
-            System.out.println("Updated successfully.");
-        } else {
+    // Update quantity
+    public void updateQuantity(String itemId, int quantity) {
+        for (int i = 0; i < count; i++) {
+            if (items[i].getItemId().equals(itemId)) {
+                items[i].setQuantity(quantity);
+                System.out.println("Quantity updated.");
+                return;
+            }
+        }
+        System.out.println("Item not found.");
+    }
+
+    // Search by ID
+    public Item searchById(String itemId) {
+        for (int i = 0; i < count; i++) {
+            if (items[i].getItemId().equals(itemId)) {
+                return items[i];
+            }
+        }
+        return null;
+    }
+
+    // Search by Name
+    public void searchByName(String name) {
+        boolean found = false;
+
+        for (int i = 0; i < count; i++) {
+            if (items[i].getItemName().equalsIgnoreCase(name)) {
+                System.out.println(items[i]);
+                found = true;
+            }
+        }
+
+        if (!found) {
             System.out.println("Item not found.");
         }
     }
 
-    public Item searchById(String id) {
-        return items.get(id);
-    }
-
+    // Display all items
     public void displayAll() {
-        if (items.isEmpty()) {
-            System.out.println("Inventory empty.");
+        if (count == 0) {
+            System.out.println("Inventory is empty.");
             return;
         }
-        items.values().forEach(System.out::println);
+
+        for (int i = 0; i < count; i++) {
+            System.out.println(items[i]);
+        }
     }
 }
