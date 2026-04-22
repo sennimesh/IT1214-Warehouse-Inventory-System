@@ -79,24 +79,6 @@ Main class with a **menu-driven console interface**.
 * Java Collections Framework (HashMap, ArrayList)
 * OOP Principles
 
----
-
-##  How to Run the Program
-
-### 1. Compile the Java files
-
-```bash
-javac *.java
-```
-
-### 2. Run the program
-
-```bash
-java Warehouse
-```
-
----
-
 ## 💻 Sample Output
 
 ```
@@ -137,27 +119,3 @@ IT1214-Warehouse-Inventory-System/
 * **Abstraction** → Inventory hides internal logic
 * **Composition** → Warehouse contains Inventory
 * **Modularity** → Separate classes for different responsibilities
-
----
-
-##  Future Improvements
-
-* Add file storage (save/load inventory)
-* Implement GUI (Java Swing / JavaFX)
-* Add item price update feature
-* Add database integration (MySQL)
-
----
-
-##  Author
-
-* SMMIB Senavirathna
-
-
-## 📎 Submission Notes
-
-* Minimum 3 commits included ✔
-* Code is well-structured and commented ✔
-* Program compiles and runs successfully ✔
-
----
